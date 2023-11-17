@@ -19,20 +19,52 @@ class OutlinedCard extends StatefulWidget {
 }
 
 class _OutlinedCardState extends State<OutlinedCard> {
+  bool _hovered = false;
   @override
   Widget build(BuildContext context) {
+    final borderRadius = BorderRadius.circular(_hovered ? 20 : 8);
+    const animationCurve = Curves.easeInOut;
     return MouseRegion(
+      onEnter: (_) {
+        if (!widget.clickable) return;
+        setState(() {
+          _hovered = true;
+        });
+      },
+      onExit: (_) {
+        if (!widget.clickable) return;
+        setState(() {
+          _hovered = false;
+        });
+      },
       cursor: widget.clickable
           ? SystemMouseCursors.click
           : SystemMouseCursors.basic,
-      child: Container(
+      child: AnimatedContainer(
+        duration: kThemeAnimationDuration,
+        curve: animationCurve,
         decoration: BoxDecoration(
-          border: Border.all(
-            color: Theme.of(context).colorScheme.outline,
-            width: 1,
-          ),
-        ),
-        child: widget.child,
+            border: Border.all(
+              color: Theme.of(context).colorScheme.outline,
+              width: 1,
+            ),
+            borderRadius: borderRadius),
+        foregroundDecoration: BoxDecoration(
+            color: Theme.of(context)
+                .colorScheme
+                .onSurface
+                .withOpacity(_hovered ? 0.12 : 0),
+            borderRadius: borderRadius),
+        child: TweenAnimationBuilder<BorderRadius>(
+            curve: animationCurve,
+            tween: Tween(begin: BorderRadius.zero, end: borderRadius),
+            builder: (context, value, child) => ClipRRect(
+                  clipBehavior: Clip.antiAlias,
+                  borderRadius: borderRadius,
+                  child: child,
+                ),
+            duration: kThemeAnimationDuration,
+            child: widget.child),
       ),
     );
   }
