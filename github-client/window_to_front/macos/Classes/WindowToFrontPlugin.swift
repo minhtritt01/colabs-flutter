@@ -24,9 +24,13 @@ public class WindowToFrontPlugin: NSObject, FlutterPlugin {
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     switch call.method {
+    // Add from here
     case "activate":
       NSApplication.shared.activate(ignoringOtherApps: true)
       result(nil)
+    // to here.
+    // Delete the getPlatformVersion case,
+    // as you won't be using it.
     default:
       result(FlutterMethodNotImplemented)
     }
