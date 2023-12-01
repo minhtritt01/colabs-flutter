@@ -5270,8 +5270,7 @@ typedef duk_uint_t = ffi.UnsignedInt;
 /// Error codes are represented with platform int.  High bits are used
 /// for flags and such, so 32 bits are needed.
 typedef duk_errcode_t = duk_int_t;
-typedef va_list = __builtin_va_list;
-typedef __builtin_va_list = ffi.Pointer<ffi.Char>;
+typedef va_list = ffi.Pointer<ffi.Char>;
 
 /// Boolean values are represented with the platform 'unsigned int'.
 typedef duk_bool_t = duk_small_uint_t;
