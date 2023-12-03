@@ -8,6 +8,10 @@ class ProductRepositoryImpl implements ProductRepository {
   Future<List<Product>> getAllProducts() async {
     var dummyData = [
       {'productName': 'Google Search'},
+      {'productName': 'YouTube'},
+      {'productName': 'Android'},
+      {'productName': 'Google Maps'},
+      {'productName': 'Gmail'}
     ];
     return dummyData.map((item) => Product.fromMap(item)).toList();
   }

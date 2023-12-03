@@ -133,12 +133,14 @@ class HaikuPageState extends State<HaikuPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
                   width: double.maxFinite,
-                  child: Text(
-                    haikuText,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w300,
+                  child: SingleChildScrollView(
+                    child: Text(
+                      haikuText,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w300,
+                      ),
                     ),
                   ),
                 ),
