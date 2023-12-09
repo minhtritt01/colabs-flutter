@@ -35,7 +35,9 @@ class BrickBreaker extends FlameGame
     world.add(Ball(
         radius: ballRadius,
         position: size / 2,
-        velocity: Vector2((rand.nextDouble() - 0.5) * width, height * 0.2)));
+        velocity: Vector2((rand.nextDouble() - 0.5) * width, height * 0.2)
+            .normalized()
+          ..scale(height / 4)));
 
     world.add(Bat(
         size: Vector2(batWidth, batHeight),
@@ -51,9 +53,9 @@ class BrickBreaker extends FlameGame
     super.onKeyEvent(event, keysPressed);
     switch (event.logicalKey) {
       case LogicalKeyboardKey.arrowLeft:
-        world.children.whereType<Bat>().first.moveBy(-batStep);
+        world.children.query<Bat>().first.moveBy(-batStep);
       case LogicalKeyboardKey.arrowRight:
-        world.children.whereType<Bat>().first.moveBy(batStep);
+        world.children.query<Bat>().first.moveBy(batStep);
     }
     return KeyEventResult.handled;
   }
