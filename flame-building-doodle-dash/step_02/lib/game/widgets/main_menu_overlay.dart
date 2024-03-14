@@ -177,7 +177,7 @@ class CharacterButton extends StatelessWidget {
           : null,
       onPressed: onSelectChar,
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             Image.asset(
